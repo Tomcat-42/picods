@@ -15,7 +15,7 @@ def picotable(
     color: str = "white",
 ) -> None:
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(16, 0.5 * len(rows) + 0.5))
 
     # hide axes
     fig.patch.set_visible(False)

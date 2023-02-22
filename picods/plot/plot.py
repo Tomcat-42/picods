@@ -31,6 +31,7 @@ def picoplot(
         y_lim: The y limit.
     """
 
+    plt.figure(figsize=(16, 0.5 * len(xs[0]) + 0.5))
     plt.title(title)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
