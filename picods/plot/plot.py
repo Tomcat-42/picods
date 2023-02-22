@@ -1,18 +1,20 @@
-from typing import Any, Dict, Iterable, List
+from typing import Iterable
+from typing import List
+from typing import Union
 
 import matplotlib.pyplot as plt
 
 
-def plot(
+def picoplot(
+    title: str,
     xs: Iterable[Iterable],
     ys: Iterable[Iterable],
     legends: List[str],
     colors: List[str],
     x_label: str,
     y_label: str,
-    title: str,
-    x_lim: int | None = None,
-    y_lim: int | None = None,
+    x_lim: Union[int, None] = None,
+    y_lim: Union[int, None] = None,
 ) -> None:
     """
     Plot a graph.
