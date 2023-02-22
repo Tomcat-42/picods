@@ -1,4 +1,6 @@
 from numbers import Number
+from typing import List
+from typing import Union
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -6,9 +8,9 @@ import pandas as pd
 
 def picotable(
     title: str,
-    rows: list[list[Number | str]],
-    columns_labels: list[str],
-    row_labels: list[str],
+    rows: List[List[Union[Number, str]]],
+    columns_labels: List[str],
+    row_labels: List[str],
     round_digits: int = 4,
     color: str = "white",
 ) -> None:
