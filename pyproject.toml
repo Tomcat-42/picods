@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "picods"
-version = "0.1.4"
+version = "0.1.5"
 description = "Pico Data Science: A small, personal use case, Data Science library."
 authors = ["Pablo <pablohuggem@gmail.com>"]
 license = "MIT"
