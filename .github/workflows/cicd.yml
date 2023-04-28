@@ -1,49 +1,44 @@
 name: Publish to PyPI
-
 on:
   workflow_dispatch:
   push:
     branches:
       - main
-
+permissions:
+  contents: write
+  discussions: write
 jobs:
   build_and_publish:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Check out the repository
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-
-    - name: Install Poetry
-      run: |
-        curl -sSL https://install.python-poetry.org | python3 -
-
-    - name: Install dependencies
-      run: |
-        echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
-        poetry install
-
-    - name: Bump version
-      env:
-        POETRY_VERSION_BUMP_TYPE: patch
-      run: |
-        poetry version ${POETRY_VERSION_BUMP_TYPE}
-        git config user.name "GitHub Actions Bot"
-        git config user.email "pablohuggem@gmail.com"
-        git add pyproject.toml
-        git commit -m "Bump version to $(poetry version | awk '{print $2}')"
-        git push
-
-    - name: Build and publish to PyPI
-      env:
-        PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
-      run: |
-        poetry build
-        poetry publish --username __token__ --password $PYPI_API_TOKEN
+      - name: Check out the repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+      - name: Install dependencies
+        run: |
+          echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
+          poetry install
+      - name: Bump version
+        env:
+          POETRY_VERSION_BUMP_TYPE: patch
+        run: |
+          poetry version ${POETRY_VERSION_BUMP_TYPE}
+          git config user.name "GitHub Actions Bot"
+          git config user.email "pablohuggem@gmail.com"
+          git add pyproject.toml
+          git commit -m "Bump version to $(poetry version | awk '{print $2}')"
+          git push
+      - name: Build and publish to PyPI
+        env:
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          poetry build
+          poetry publish --username __token__ --password $PYPI_API_TOKEN
