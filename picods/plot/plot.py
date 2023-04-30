@@ -42,7 +42,7 @@ def picoplot(
         plt.ylim(0, y_lim)
 
     for x, y, color in zip(xs, ys, colors):
-        plt.plot(y, x, color=color)
+        plt.plot(x, y, color=color)
 
     plt.legend(legends)
     plt.show()
